@@ -115,7 +115,7 @@
 							name: this.finalDraw[i].giver.name,
 							email: this.finalDraw[i].giver.mail,
 							message: `Olá, ${this.finalDraw[i].giver.name}! Seu amigo do ovo é ${this.finalDraw[i].receiver.name}! 
-                            Uma sugestão, compre um ${this.finalDraw[i].giver.preference} de presente, pode confiar!
+                            Uma sugestão, compre um ${this.finalDraw[i].receiver.preference} de presente, pode confiar!
                             Boas Festas!`,
 						},
                         "lNlNKTTcGacujrEq8"
