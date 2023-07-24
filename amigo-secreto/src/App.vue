@@ -1,5 +1,6 @@
 <template>
 	<div id="app">
+        <Topbar />
 		<div class="user">
 			<p>Nome:</p>
 			<input type="text" v-model="name" />
@@ -46,10 +47,11 @@
 
 <script>
 	import emailjs from "emailjs-com";
+    import Topbar from "@/components/Topbar.vue";
 
 	export default {
 		name: "App",
-		components: {},
+		components: { Topbar },
 
 		data() {
 			return {
@@ -140,7 +142,6 @@
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
 		color: #2c3e50;
-		margin-top: 60px;
 	}
 
 	.user {
