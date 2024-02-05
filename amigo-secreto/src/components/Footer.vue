@@ -1,5 +1,5 @@
 <template>
-    <div class="topbar">
+    <div class="footer">
         <div class="menu">
             <router-link id="menu-home" to="/">Home</router-link>
         
@@ -14,14 +14,15 @@
 
 <script>
 export default {
-    name: 'Topbar'
+    name: 'Footer'
 }
 
 </script>
 
 <style>
-    .topbar {
+    .footer {
         height: 80px;
+        width: 100%;
     }
 
     .menu {
