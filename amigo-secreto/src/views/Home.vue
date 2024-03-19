@@ -1,45 +1,55 @@
 <template>
     <div class="home">
-        <div class="user">
-            <p>Nome:</p>
-            <input type="text" v-model="name" />
-            <p>Email:</p>
-            <input type="email" v-model="mail" />
-            <p>Chocolate favorito:</p>
-            <input type="email" v-model="preference" />
-            <!-- <p>Telefone: </p>
-                <input v-model="user.phone"> -->
-        </div>
-
-        <div class="add-user">
-            <button class="button" @click="addUser()">
-                Adicionar participante
-            </button>
-        </div>
-        <div class="sort">
-            <button class="button" @click="drawUsers()">
-                Realizar sorteio
-            </button>
-        </div>
-
-        <br />
-
-        <div class="submit">
-            <div class="users">               
-                {{ this.users }}
+        <div class="inputs">
+            <div class="user">
+                <div class="user-name">
+                    <p>Nome:</p>
+                    <input type="text" v-model="name" />
+                </div>
+                <div class="user-mail">
+                    <p>Email:</p>
+                    <input type="email" v-model="mail" />
+                </div>
+                <div class="user-preference">
+                    <p>Presente:</p>
+                    <input type="email" v-model="preference" />
+                </div>
             </div>
 
-            <!-- <div v-for="(user, index) in this.finalDraw" :key="index">
-                <span>{{ user.giver.name }} -> {{ user.receiver.name }}</span>
-            </div> -->
-        </div>
+            <div class="add-user">
+                <button class="button" @click="addUser()">
+                    Adicionar participante
+                </button>
+            </div>
+            <div class="sort">
+                <button class="button" @click="sortUsers()">
+                    Realizar sorteio
+                </button>
+            </div>
 
-        <div class="mail-to">
-            <button class="button" @click="sendAllEmails()">
-                Mandar convites
-            </button>
-        </div>
+            <br />
 
+            <div class="submit">
+                <!-- <div class="users">               
+                    {{ this.users }}
+                </div> -->
+
+                <!-- para ver o resultado do sorteio: -->
+                <!-- <div v-for="(user, index) in this.finalDraw" :key="index">
+                    <span>{{ user.giver.name }} -> {{ user.receiver.name }}</span>
+                </div> -->
+            </div>
+
+            <div class="mail-to">
+                <button class="button" @click="sendAllEmails()">
+                    Mandar convites
+                </button>
+            </div>
+        </div>
+        <div class="user-table" v-if="this.users!=0">
+            <b-table striped hover :items="this.users" :fields="fields"></b-table>
+        </div>
+        
         <!-- <a href="https://api.whatsapp.com/send?phone=${this.finalDraw[i].giver.phone}&text='Ola${this.finalDraw[0].giver.name}! Você saiu com ${this.finalDraw[0].receiver.name}">Send Message</a> -->
     </div>
 </template>
@@ -58,6 +68,11 @@
                     preference: "",
                     users: [],
                     finalDraw: [],
+                    fields: [
+                        { label: "Nome", key: "name" },
+                        { label: "E-mail", key: "mail" },
+                        { label: "Chocolate preferido", key: "preference" }
+                    ]
                 };
             },
 
@@ -71,7 +86,7 @@
                 // this.phone = ''
             },
 
-            drawUsers() {
+            sortUsers() {
                 let givers = [];
                 let receivers = [];
 
@@ -128,6 +143,7 @@
                 this.email = "";
                 this.message = "";
                 this.preference = "";
+                // precisa resetar tambem o grupo dos givers e receivers
             },
         },
     }
@@ -135,7 +151,9 @@
 
 <style>
     .user {
-		display: block;
+		display: flex;
+        flex-direction: column;
+        align-items: stretch;
 	}
 	.add-user,
 	.sort {
@@ -144,4 +162,28 @@
 	span {
 		display: block;
 	}
+    .home {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        min-height: 793px;
+    }
+    .inputs, .user-table {
+        padding: 40px;
+        width: 100%;
+    }
+    input {
+        width: 50%;
+        margin-right: 10npm,px;
+    }
+    p {
+        font-size: 20px;
+        margin-inline: 10px;
+        padding-inline: 10px;
+    }
+    .user-name, .user-mail, .user-preference {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+    }
 </style>
